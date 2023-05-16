@@ -1,0 +1,12 @@
+570,WT-184-1,0.16813,0.020202,False
+CREATE TABLE EMPLOYEE (
+	ID INTEGER,
+	NAME VARCHAR(20),
+	DEPARTMENT VARCHAR(20),
+	MANAGERID INTEGER
+);
+INSERT INTO EMPLOYEE VALUES (-1, '2147483649', '2147483648', 0);
+INSERT INTO EMPLOYEE VALUES (0, '2147483648', '2147483648', -1);
+
+select name from employee as a join (select managerid from employee group by 1 having count(id) >= 5) as t on a.id = t.managerid;
+SELECT "a"."name" AS "name" FROM "employee" AS "employee" INNER JOIN "employee" AS "a" ON "employee"."managerid" = "a"."id";

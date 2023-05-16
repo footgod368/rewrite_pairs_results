@@ -1,0 +1,10 @@
+1303,WT-3-1,0.386454,0.057221,False
+CREATE TABLE EMPLOYEE (
+	EMPLOYEE_ID INTEGER,
+	TEAM_ID INTEGER
+);
+INSERT INTO EMPLOYEE VALUES (0, NULL);
+INSERT INTO EMPLOYEE VALUES (1, -1);
+
+select a.employee_id, count(b.employee_id) as team_size from employee as a left outer join employee as b on a.team_id = b.team_id group by a.employee_id;
+SELECT "a"."employee_id" AS "employee_id", COUNT("b"."employee_id") AS "team_size" FROM "employee" AS "a" INNER JOIN "employee" AS "b" ON "a"."team_id" = "b"."team_id" GROUP BY "a"."employee_id";

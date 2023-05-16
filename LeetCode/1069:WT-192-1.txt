@@ -1,0 +1,20 @@
+1069,WT-192-1,0.324288,0.041567,False
+CREATE TABLE SALES (
+	SALE_ID INTEGER,
+	PRODUCT_ID INTEGER,
+	YEAR INTEGER,
+	QUANTITY INTEGER,
+	PRICE INTEGER
+);
+INSERT INTO SALES VALUES (-1, 0, 0, -1, 0);
+INSERT INTO SALES VALUES (0, 1, 0, -1, 0);
+
+CREATE TABLE PRODUCT (
+	PRODUCT_ID INTEGER,
+	PRODUCT_NAME VARCHAR(20)
+);
+INSERT INTO PRODUCT VALUES (0, '2147483648');
+INSERT INTO PRODUCT VALUES (1, '2147483648');
+
+select s.product_id, sum(quantity) as total_quantity from sales as s left outer join product as p on s.product_id = p.product_id group by 1;
+SELECT "s"."product_id" AS "product_id", SUM("s"."quantity") AS "total_quantity" FROM "sales" AS "s";

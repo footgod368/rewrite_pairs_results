@@ -1,0 +1,11 @@
+1821,WT-113-1,0.089896,0.01892,False
+CREATE TABLE CUSTOMERS (
+	CUSTOMER_ID INTEGER,
+	YEAR INTEGER,
+	REVENUE INTEGER
+);
+INSERT INTO CUSTOMERS VALUES (1, 2021, 0);
+INSERT INTO CUSTOMERS VALUES (2, 2022, 0);
+
+select customer_id from (select customer_id, revenue from customers where year = 2021) as t group by customer_id having sum(revenue) > 0;
+SELECT "customers"."customer_id" AS "customer_id" FROM "customers" AS "customers" WHERE "customers"."year" = 2021 GROUP BY "customer_id" HAVING SUM("customers"."customer_id") > 0;

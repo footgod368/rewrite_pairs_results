@@ -1,0 +1,10 @@
+614,WT-2-1,0.32801,0.035312,False
+CREATE TABLE FOLLOW (
+	FOLLOWEE VARCHAR(20),
+	FOLLOWER VARCHAR(20)
+);
+INSERT INTO FOLLOW VALUES ('2147483648', '2147483649');
+INSERT INTO FOLLOW VALUES ('2147483649', '2147483648');
+
+select aa.followee as follower, count(distinct aa.follower) as num from (select a.follower as followee, b.follower as follower from follow as a join follow as b on a.follower = b.followee) as aa group by aa.followee order by follower;
+SELECT "a"."follower" AS "follower", COUNT(DISTINCT "b"."follower") AS "num" FROM "follow" AS "a" INNER JOIN "follow" AS "b" ON "a"."follower" = "b"."followee" GROUP BY "a"."follower" ORDER BY "b"."follower";

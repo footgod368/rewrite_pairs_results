@@ -1,0 +1,12 @@
+1149,WT-84-1,0.065682,0.017326,False
+CREATE TABLE VIEWS (
+	ARTICLE_ID INTEGER,
+	AUTHOR_ID INTEGER,
+	VIEWER_ID INTEGER,
+	VIEW_DATE DATE
+);
+INSERT INTO VIEWS VALUES (NULL, 0, 0, '1970-01-02');
+INSERT INTO VIEWS VALUES (-1, 0, 0, '1970-01-01');
+
+select distinct id from (select view_date, viewer_id as id from views group by 1, 2 having count(distinct article_id) > 1) as sub order by id;
+SELECT DISTINCT "views"."viewer_id" AS "id" FROM "views" AS "views" ORDER BY "views"."viewer_id";

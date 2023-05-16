@@ -1,0 +1,18 @@
+1077,WT-57-4,3.454003,0.454457,False
+CREATE TABLE PROJECT (
+	PROJECT_ID INTEGER,
+	EMPLOYEE_ID INTEGER
+);
+INSERT INTO PROJECT VALUES (0, 0);
+INSERT INTO PROJECT VALUES (1, -1);
+
+CREATE TABLE EMPLOYEE (
+	EMPLOYEE_ID INTEGER,
+	NAME VARCHAR(20),
+	EXPERIENCE_YEARS INTEGER
+);
+INSERT INTO EMPLOYEE VALUES (-1, NULL, 2);
+INSERT INTO EMPLOYEE VALUES (0, NULL, 1);
+
+select t1.project_id, t1.employee_id from (select p.project_id, e.employee_id, e.experience_years from project as p left outer join employee as e on p.employee_id = e.employee_id) as t1 join (select p.project_id, max(e.experience_years) as max_years from project as p left outer join employee as e on p.employee_id = e.employee_id group by 1) as t2 on (t1.project_id = t2.project_id and t1.experience_years = t2.max_years);
+SELECT "p"."project_id" AS "project_id", "e"."employee_id" AS "employee_id" FROM "project" AS "p" LEFT JOIN "employee" AS "e" ON "p"."employee_id" = "e"."employee_id" INNER JOIN (SELECT "p0"."project_id" AS "project_id", MAX("e0"."experience_years") AS "max_years" FROM "project" AS "p0" LEFT JOIN "employee" AS "e0" ON "p0"."employee_id" = "e0"."employee_id") AS "t2" ON "p"."project_id" = "t2"."project_id" AND "e"."experience_years" = "t2"."max_years";

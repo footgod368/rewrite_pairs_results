@@ -1,0 +1,10 @@
+1729,WT-84-1,0.05601,0.011495,False
+CREATE TABLE FOLLOWERS (
+	USER_ID INTEGER,
+	FOLLOWER_ID INTEGER
+);
+INSERT INTO FOLLOWERS VALUES (1, 0);
+INSERT INTO FOLLOWERS VALUES (0, 1);
+
+select distinct user_id, count(distinct follower_id) as followers_count from followers group by 1;
+SELECT "followers"."user_id" AS "user_id", COUNT("followers"."follower_id") AS "followers_count" FROM "followers" AS "followers";

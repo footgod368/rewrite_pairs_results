@@ -1,0 +1,10 @@
+1303,WT-107-1,0.162546,0.021802,False
+CREATE TABLE EMPLOYEE (
+	EMPLOYEE_ID INTEGER,
+	TEAM_ID INTEGER
+);
+INSERT INTO EMPLOYEE VALUES (0, NULL);
+INSERT INTO EMPLOYEE VALUES (1, 0);
+
+select e.employee_id, team.team_size from employee as e join (select team_id, count(distinct employee_id) as team_size from employee group by 1) as team on e.team_id = team.team_id;
+SELECT "e"."employee_id" AS "employee_id", "team"."team_size" AS "team_size" FROM "employee" AS "e" INNER JOIN (SELECT "employee"."team_id" AS "team_id", COUNT("employee"."employee_id") AS "team_size" FROM "employee" AS "employee") AS "team" ON "e"."team_id" = "team"."team_id";

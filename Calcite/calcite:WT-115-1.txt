@@ -1,0 +1,41 @@
+calcite,WT-115-1,0.41339,0.180583,False
+CREATE TABLE EMP (
+	EMPNO INTEGER,
+	DEPTNO INTEGER,
+	ENAME VARCHAR(20),
+	JOB VARCHAR(20),
+	MGR INTEGER,
+	HIREDATE DATE,
+	SAL INTEGER,
+	COMM INTEGER,
+	SLACKER INTEGER
+);
+INSERT INTO EMP VALUES (-1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO EMP VALUES (0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+
+CREATE TABLE DEPT (
+	DEPTNO INTEGER,
+	NAME VARCHAR(20)
+);
+INSERT INTO DEPT VALUES (0, '2147483648');
+INSERT INTO DEPT VALUES (-1, '2147483648');
+
+CREATE TABLE BONUS (
+	ENAME VARCHAR(20),
+	JOB VARCHAR(20),
+	SAL INTEGER,
+	COMM INTEGER
+);
+INSERT INTO BONUS VALUES (NULL, NULL, NULL, NULL);
+INSERT INTO BONUS VALUES (NULL, NULL, NULL, NULL);
+
+CREATE TABLE ACCOUNT (
+	ACCTNO INTEGER,
+	TYPE VARCHAR(20),
+	BALANCE VARCHAR(20)
+);
+INSERT INTO ACCOUNT VALUES (-1, NULL, NULL);
+INSERT INTO ACCOUNT VALUES (0, NULL, NULL);
+
+SELECT * FROM (SELECT * FROM "EMP" WHERE "DEPTNO" = "EMPNO") AS "t0" RIGHT JOIN "DEPT" AS "DEPT0" ON "t0"."DEPTNO" = "DEPT0"."DEPTNO";
+SELECT "t0"."empno" AS "empno", "t0"."ename" AS "ename", "t0"."job" AS "job", "t0"."mgr" AS "mgr", "t0"."hiredate" AS "hiredate", "t0"."sal" AS "sal", "t0"."comm" AS "comm", "t0"."deptno" AS "deptno", "t0"."slacker" AS "slacker", "DEPT0"."deptno" AS "deptno", "DEPT0"."name" AS "name" FROM "dept" AS "DEPT0" LEFT JOIN (SELECT "EMP"."empno" AS "empno", "EMP"."ename" AS "ename", "EMP"."job" AS "job", "EMP"."mgr" AS "mgr", "EMP"."hiredate" AS "hiredate", "EMP"."sal" AS "sal", "EMP"."comm" AS "comm", "EMP"."deptno" AS "deptno", "EMP"."slacker" AS "slacker" FROM "emp" AS "EMP" WHERE "EMP"."deptno" = "EMP"."empno") AS "t0" ON "t0"."deptno" = "DEPT0"."deptno";

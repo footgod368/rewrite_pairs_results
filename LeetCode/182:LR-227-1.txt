@@ -1,0 +1,10 @@
+182,LR-227-1,0.052901,0.013293,False
+CREATE TABLE PERSON (
+	ID INTEGER,
+	EMAIL VARCHAR(20)
+);
+INSERT INTO PERSON VALUES (-1, NULL);
+INSERT INTO PERSON VALUES (0, NULL);
+
+select email from person as s group by email having count(email) > 1;
+SELECT "EMAIL" AS "email" FROM "PERSON" GROUP BY "EMAIL" HAVING COUNT(*) > 1;

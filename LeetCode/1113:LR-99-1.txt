@@ -1,0 +1,13 @@
+1113,LR-99-1,0.208393,0.018322,False
+CREATE TABLE ACTIONS (
+	USER_ID INTEGER,
+	POST_ID INTEGER,
+	ACTION_DATE DATE,
+	ACTION VARCHAR(20),
+	EXTRA VARCHAR(20)
+);
+INSERT INTO ACTIONS VALUES (0, 0, '2019-07-05', 'REPORT', '2147483648');
+INSERT INTO ACTIONS VALUES (0, 0, '2019-07-04', 'REPORT', NULL);
+
+select report_reason, count(report_reason) as report_count from (select distinct t1.post_id, t1.action, t1.extra as report_reason, t1.action_date from actions as t1 where (t1.action_date = '2019-07-04' and t1.action = 'report')) as t2 group by t2.report_reason;
+SELECT "EXTRA", COUNT(*) AS "report_count" FROM (SELECT "POST_ID", "EXTRA" FROM "ACTIONS" WHERE "ACTION_DATE" = DATE '2019-07-04' AND "ACTION" = 'report' GROUP BY "POST_ID", "EXTRA") AS "t19545" GROUP BY "EXTRA";

@@ -1,0 +1,11 @@
+1821,WT-228-1,0.102183,0.016426,False
+CREATE TABLE CUSTOMERS (
+	CUSTOMER_ID INTEGER,
+	YEAR INTEGER,
+	REVENUE INTEGER
+);
+INSERT INTO CUSTOMERS VALUES (1, 2021, 1);
+INSERT INTO CUSTOMERS VALUES (0, 2021, 1);
+
+select distinct temp.customer_id from (select customer_id, year, sum(revenue) as rev_2021 from customers where year = '2021' group by 1, 2) as temp where temp.rev_2021 > 0;
+SELECT "temp"."customer_id" AS "customer_id" FROM (SELECT "customers"."customer_id" AS "customer_id", "customers"."year" AS "year", SUM("customers"."revenue") AS "rev_2021" FROM "customers" AS "customers" WHERE "customers"."year" = '2021') AS "temp" WHERE "temp"."rev_2021" > 0;

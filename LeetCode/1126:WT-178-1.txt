@@ -1,0 +1,11 @@
+1126,WT-178-1,0.463838,0.028092,False
+CREATE TABLE EVENTS (
+	BUSINESS_ID INTEGER,
+	EVENT_TYPE VARCHAR(20),
+	OCCURENCES INTEGER
+);
+INSERT INTO EVENTS VALUES (0, '2147483648', 2);
+INSERT INTO EVENTS VALUES (-1, '2147483648', 0);
+
+select business_id from (select a.business_id, a.event_type from events as a join (select event_type, avg(occurences) as avg_occur from events group by 1) as b on (a.event_type = b.event_type and a.occurences > b.avg_occur)) as temp group by 1 having count(distinct event_type) > 1;
+SELECT "a"."business_id" AS "business_id" FROM "events" AS "a" INNER JOIN (SELECT "events"."event_type" AS "event_type", AVG("events"."occurences") AS "avg_occur" FROM "events" AS "events") AS "b" ON "a"."event_type" = "b"."event_type" AND "a"."occurences" > "b"."avg_occur";
